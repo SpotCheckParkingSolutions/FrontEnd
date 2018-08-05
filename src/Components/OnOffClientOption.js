@@ -4,7 +4,7 @@ const OnOffClientOption = (props) =>{
   return (
     <div className="client-option">
       <span className="client-option-status">{props.optionName.toUpperCase()}:
-      {props.optionStatus === 0 ? 'OFF' : (props.optionStatus === 1 ? 'ON' : 'ERROR')}</span>
+      {props.optionStatus === 0 ? 'OFF' : (props.optionStatus === 1 ? 'ON' : <h4 className='optionError'>ERROR</h4>)}</span>
       {props.optionStatus !== 2
       ?
       <button onClick={()=> {
@@ -15,7 +15,7 @@ const OnOffClientOption = (props) =>{
       </button>
       :
       <button
-        style={{color: 'red'}}
+        className='errorButton'
         onClick={()=>alert("This would offer error handling options")}
       >Error</button>
       }

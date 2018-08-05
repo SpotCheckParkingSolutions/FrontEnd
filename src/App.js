@@ -115,6 +115,12 @@ class App extends Component {
             <div className="server-status">
               <span>Server is: {this.state.serverStatus === 1 ? 'ON' : 'OFF' }</span>
             </div>
+            <div>
+              <button>Server Reset</button>
+            </div>
+            <div>
+              <button>Admin Tools Manual Reload</button>
+            </div>
         </div>
     </div>
 
