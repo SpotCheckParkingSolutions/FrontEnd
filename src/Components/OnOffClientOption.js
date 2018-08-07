@@ -9,14 +9,54 @@ const OnOffClientOption = (props) =>{
       ?
       <button onClick={()=> {
         props.optionStatus === 0 ?
-        alert(`this would turn ${props.optionName} on`) :
-        alert(`this would turn ${props.optionName} off`)
-          }}> Turn {props.buttonName} {props.optionStatus === 0 ? 'On' : 'Off'}
+
+
+          fetch('http://localhost:3001/command', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: `${props.optionName}`
+          })
+        }).then(res=> res.json()).then(res=> alert(res))
+
+
+
+         :
+
+          fetch('http://localhost:3001/command', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: `${props.optionName}`
+          })
+        }).then(res=> res.json()).then(res=> alert(res.command))
+
+    }}
+
+      > Turn {props.buttonName} {props.optionStatus === 0 ? 'On' : 'Off'}
       </button>
       :
       <button
         className='errorButton'
-        onClick={()=>alert("This would offer error handling options")}
+        onClick={()=> {fetch('http://localhost:3001/users', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: `${props.optionName}`
+          })
+        })
+        console.log("Ran POST");
+      }
+      }
       >Error</button>
       }
 
